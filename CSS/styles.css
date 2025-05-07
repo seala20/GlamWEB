@@ -615,6 +615,11 @@ a {
   max-height: 100%;
   opacity: 1;
 }
+@media (min-width: 768px) {
+  .icon {
+    display: none; /* Hides the icon on screens larger than 768px */
+  }
+}
 
 /* Blocks */
 
@@ -661,7 +666,7 @@ a {
 /* Navigation Bar */
 
 .nav {
-  background: #000;
+  background: white;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -684,12 +689,12 @@ a {
 }
 
 .nav__item > a {
-  color: #d2d0db;
+  color: hwb(0 42% 58% / 0.82);
   transition: color 0.3s;
 }
 
 .nav__item > a:hover {
-  color: #fff;
+  color: #e26784;
 }
 
 .nav__toggler {
@@ -705,6 +710,11 @@ a {
 }
 
 .nav__brand {
+  font-size: 4rem; /* Adjust font size */
+  font-weight: bold; /* Make text bold */
+  color: #ff7f85; /* Set the brand color */
+  font-family: "Roboto", sans-serif; /* Stylish font */
+  text-decoration: none; /* Remove underline */
   transform: translateY(5px);
   width: 150px;
 }
@@ -722,6 +732,11 @@ a {
   }
   .nav__item {
     border: 0;
+  }
+  @media (min-width: 768px) {
+    .icon {
+      display: none;
+    }
   }
 }
 
