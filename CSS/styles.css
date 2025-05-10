@@ -2,7 +2,7 @@
 :root {
   --color-primary: #ff7f85;
   --color-secondary: #e1575a;
-  --color-accent: #f9c7c7;
+  --color-accent: #ed6a6a;
   --color-headings: #e48286;
   --color-body: #918ca4;
   --color-body-darker: #5c5577;
@@ -230,25 +230,25 @@ a {
 
 .btn--primary {
   background: var(--color-primary);
-  color: #fff;
+  color: #fffbfc;
 }
 
 .btn--primary:hover {
-  background: #3a8ffd;
+  background: #d24ea6;
 }
 
 .btn--secondary {
   background: var(--color-secondary);
-  color: #fff;
+  color: #f8f2f2;
 }
 
 .btn--secondary:hover {
-  background: #05cdf0;
+  background: hsl(0, 85%, 57%);
 }
 
 .btn--accent {
   background: var(--color-accent);
-  color: #fff;
+  color: #f9f8f8;
 }
 
 .btn--accent:hover {
@@ -279,6 +279,10 @@ a {
 @media screen and (min-width: 1024px) {
   .btn {
     font-size: 1.5rem;
+  }
+
+  .btn .icon {
+    display: inline-block; /* Ensure visibility on desktop */
   }
 }
 
@@ -496,17 +500,28 @@ a {
 
 .grid {
   display: grid;
+  gap: 0.5rem;
 }
 
 @media screen and (min-width: 768px) {
   .grid--1x2 {
     grid-template-columns: repeat(2, 1fr);
   }
+  .grid--1x3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 767px) {
+  .grid--1x3 {
+    grid-template-columns: 1fr; /* Stacks images vertically */
+    gap: 0.5rem;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   .grid--1x3 {
     grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
   }
 }
 
@@ -615,11 +630,6 @@ a {
   max-height: 100%;
   opacity: 1;
 }
-@media (min-width: 768px) {
-  .icon {
-    display: none; /* Hides the icon on screens larger than 768px */
-  }
-}
 
 /* Blocks */
 
@@ -638,7 +648,7 @@ a {
 }
 
 .block--dark {
-  background: #000;
+  background: #d9d6d6;
   color: #7b858b;
 }
 
@@ -714,6 +724,7 @@ a {
   font-weight: bold; /* Make text bold */
   color: #ff7f85; /* Set the brand color */
   font-family: "Roboto", sans-serif; /* Stylish font */
+  text-shadow: #7d7d7d;
   text-decoration: none; /* Remove underline */
   transform: translateY(5px);
   width: 150px;
@@ -721,7 +732,7 @@ a {
 
 @media screen and (min-width: 768px) {
   .nav__toggler {
-    display: none;
+    display: none !important;
   }
   .nav__list {
     width: auto;
@@ -733,10 +744,10 @@ a {
   .nav__item {
     border: 0;
   }
-  @media (min-width: 768px) {
-    .icon {
-      display: none;
-    }
+}
+@media (min-width: 768px) {
+  .nav > .icon {
+    display: none !important;
   }
 }
 
@@ -744,21 +755,33 @@ a {
 
 .hero__tagline {
   font-size: 2rem;
-  color: #b9c3cf;
+  color: #f8f7f7;
   letter-spacing: 1px;
   margin: 2rem 0 5rem;
 }
-
+.hero__content {
+  padding-left: 0;
+  padding-right: 1rem;
+}
+.hero__image {
+  width: 100%;
+  max-width: 300px; /* Adjust this based on your design */
+  height: auto;
+}
 @media screen and (min-width: 768px) {
   .hero__content {
     text-align: left;
     align-self: center;
+    margin-bottom: 0.5rem;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .hero {
     padding-top: 0;
+  }
+  .hero__image {
+    align-self: center;
   }
 }
 
@@ -787,6 +810,63 @@ a {
   .block-domain__prices {
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   }
+}
+/*brands*/
+
+.brand-item {
+  display: flex;
+  margin-right: 16px;
+  flex: 0 0 auto;
+}
+
+.brand-item__name {
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+}
+.brand-item__row {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  justify-content: flex-start;
+  flex-wrap: wrap; /* Allow items to wrap correctly */
+}
+
+.brand-item {
+  flex: 0 0 auto; /* Prevent items from shrinking or growing */
+}
+.brand-item__row:last-child {
+  margin-bottom: 0;
+}
+
+.brand-item__content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  padding: 8x 18px;
+  background-color: white;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.brand-item__content:active,
+.brand-item__content:focus,
+.brand-item__content:hover {
+  color: #000;
+  background-color: #f7f7f7;
+}
+
+.brand-item__content img {
+  height: auto;
+  width: 24px;
+  align-items: center;
+  display: inline-block;
 }
 
 /* Plans Block */
@@ -833,6 +913,11 @@ a {
   .block-showcase__image > img {
     width: auto;
     max-width: 700px;
+  }
+}
+@media (min-width: 1024px) {
+  .icon {
+    display: block;
   }
 }
 
