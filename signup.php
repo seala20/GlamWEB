@@ -1,24 +1,26 @@
 <?php
 session_start();
-include('config.php');
+require_once('config.php');
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form inputs
     $name = $_POST['name'] ?? '';
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
     $role = $_POST['role'] ?? '';
+    $created_at = date('Y-m-d H:i:s');
 
     // Validate role was selected via JS (or fallback)
     if (empty($role)) {
-        echo "<p class='error'>Please select a role (Buyer or Seller).</p>";
+        echo "<div class='msg error'>Please select a role (Buyer or Seller).</div>";
         exit;
     }
 
     // Validate passwords match
     if ($password !== $confirm_password) {
-        echo "<p class='error'>Passwords do not match!</p>";
+        echo "<div class='msg error'>Passwords do not match!</div>";
         exit;
     }
 
@@ -31,22 +33,44 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $query->execute();
 
     if ($query->rowCount() > 0) {
-        echo "<p class='error'>The email address is already registered!</p>";
+        echo "<div class='msg error'>The email address is already registered!</div>";
     } else {
         // Insert new user
-        $query = $connection->prepare("INSERT INTO users (username, email, password, role) VALUES (:username, :email, :password_hash, :role)");
+        $query = $connection->prepare("INSERT INTO users (username, email, password, role, created_at) VALUES (:username, :email, :password, :role, :created_at)");
         $query->bindParam(":username", $name, PDO::PARAM_STR);
         $query->bindParam(":email", $email, PDO::PARAM_STR);
-        $query->bindParam(":password_hash", $password_hash, PDO::PARAM_STR);
+        $query->bindParam(":password", $password_hash, PDO::PARAM_STR);
         $query->bindParam(":role", $role, PDO::PARAM_STR);
+        $query->bindParam(":created_at", $created_at, PDO::PARAM_STR);
 
         if ($query->execute()) {
-            echo "<p class='success'>Your registration was successful!</p>";
-            // Optionally redirect:
-            // header("Location: login.html");
-            // exit;
+            // Styled success message and redirect after 2 seconds
+            echo "
+            <style>
+                .msg.success {
+                    background: #fff6f7;
+                    color: #e1575a;
+                    border: 2px solid #e1575a;
+                    border-radius: 20px;
+                    padding: 1.2rem 2rem;
+                    font-size: 1.2rem;
+                    text-align: center;
+                    margin: 2rem auto;
+                    max-width: 400px;
+                    font-weight: bold;
+                    box-shadow: 0 4px 16px #e1575a22;
+                }
+            </style>
+            <div class='msg success'>Your registration was successful!<br>Redirecting to login...</div>
+            <script>
+                setTimeout(function() {
+                    window.location.href = 'login.php';
+                }, 2000);
+            </script>
+            ";
+            exit;
         } else {
-            echo "<p class='error'>Registration failed. Please try again.</p>";
+            echo "<div class='msg error'>Registration failed. Please try again.</div>";
         }
     }
 }

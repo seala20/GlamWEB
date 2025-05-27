@@ -247,15 +247,15 @@
               }
             });
         </script>
-    <input type="hidden" name="role" id="roleInput" required />
+        <input type="hidden" name="role" id="roleInput" required />
 
         <button type="submit" class="btn btn-glam w-100">Sign Up</button>
 
         <div class="mt-3 text-center">
-          Already have an account? <a href="login.html">Login here</a>
+          Already have an account? <a href="Login.php">Login here</a>
         </div>
         <div class="mt-3 text-center">
-          <a href="index.html">Back to Home</a>
+          <a href="index.php">Back to Home</a>
         </div>
       </form>
     </div>

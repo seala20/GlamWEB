@@ -1,3 +1,47 @@
+<?php
+session_start();
+include('config.php'); // Database connection (PDO)
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Fetch user by email
+    $query = $connection->prepare("SELECT * FROM users WHERE email = :email");
+    $query->bindParam(":email", $email, PDO::PARAM_STR);
+    $query->execute();
+    $user = $query->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($password, $user['password'])) {
+        // Save common session info
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_email'] = $user['email'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['role'] = $user['role'];
+
+        // Check if this user is also in the admin table
+        $adminCheck = $connection->prepare("SELECT * FROM admin WHERE user_id = :user_id");
+        $adminCheck->bindParam(":user_id", $user['id'], PDO::PARAM_INT);
+        $adminCheck->execute();
+
+        if ($adminCheck->rowCount() > 0) {
+            $_SESSION['is_admin'] = true;
+            // If you want to choose, redirect to a choice page:
+            header("Location: choose_dashboard.php");
+            exit();
+        } else {
+            $_SESSION['is_admin'] = false;
+            header("Location: welcome.php");
+            exit();
+        }
+    } else {
+        echo '<p style="color:red;text-align:center;">Incorrect email or password.</p>';
+        header("refresh:2;url=loginPage.php");
+        exit();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -102,6 +146,10 @@
       </div>
 
       <form action="login.php" method="POST">
+        <?php if (!empty($error)): ?>
+  <div class="alert alert-danger text-center"><?php echo $error; ?></div>
+<?php endif; ?>
+
         <div class="mb-3">
           <label for="email" class="form-label">Email Address</label>
           <input
@@ -133,10 +181,10 @@
         <button type="submit" class="btn btn-glam w-100">Log In</button>
 
         <div class="mt-3 text-center">
-          Don’t have an account? <a href="signup.html">Sign up here</a>
+          Don’t have an account? <a href="SignUpPage.php">Sign up here</a>
         </div>
         <div class="mt-3 text-center">
-          <a href="index.html">Back to Home</a>
+          <a href="index.php">Back to Home</a>
         </div>
       </form>
     </div>

@@ -644,16 +644,21 @@ a {
   box-shadow: 0 0 0 3px #666;
   border-radius: 5px;
 }
-
 .nav__brand {
-  font-size: 4rem; /* Adjust font size */
-  font-weight: bold; /* Make text bold */
-  color: #ff7f85; /* Set the brand color */
-  font-family: "Roboto", sans-serif; /* Stylish font */
-  text-shadow: #7d7d7d;
-  text-decoration: none; /* Remove underline */
-  transform: translateY(5px);
-  width: 150px;
+  font-size: 3rem; /* Slightly smaller for cleaner look */
+  font-weight: 800; /* Extra bold for impact */
+  color: #ff7f85;
+  font-family: "Poppins", "Roboto", sans-serif;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  text-decoration: none;
+  display: inline-block;
+  letter-spacing: 1px; /* Spaced letters slightly */
+  transition: all 0.3s ease-in-out;
+}
+
+.nav__brand:hover {
+  color: #e1575a; /* Slight color change on hover */
+  transform: scale(1.05); /* Slight zoom on hover */
 }
 
 @media screen and (min-width: 768px) {
@@ -693,6 +698,9 @@ a {
   width: 100%;
   max-width: 300px; /* Adjust this based on your design */
   height: auto;
+  box-shadow: 0 8px 32px 0 rgba(59, 57, 57, 0.18),
+    0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
 }
 @media screen and (min-width: 768px) {
   .hero__content {
@@ -1142,34 +1150,4 @@ a {
 
 .callout-signup {
   transform: translateY(5rem);
-}
-
-/*shops*/
-/* Header */
-.shop-header {
-  text-align: center;
-  padding: 3rem 1rem 2rem;
-  background-color: #ffe0eb;
-}
-
-.shop-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.shop-header p {
-  font-size: 1.1rem;
-  color: #444;
-}
-
-.block-image .image-container img {
-  display: block;
-  position: absolute;
-  border-radius: inherit;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  object-fit: cover;
-  word-break: break-word;
 }

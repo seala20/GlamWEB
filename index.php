@@ -27,6 +27,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 
@@ -41,18 +43,30 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body>
+    <?php
+    session_start();
+    $cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
+    ?>
     <!--navbar section-->
     <nav class="nav collapsible">
-      <a aria-label="GlamConnect" class="nav__brand">GlamConnect</a>
+      <!--<a aria-label="GlamConnect" class="nav__brand glam-logo">GlamConnect</a>-->
+      <a href="index.php" aria-label="GlamConnect" class="nav__brand glam-logo">GlamConnect</a>
+
       <svg class="icon">
         <use xlink:href="images\sprite.svg#menu"></use>
       </svg>
       <ul class="list nav__list collapsible__content">
-        <li class="nav__item"><a href="shop.html">Shops</a></li>
-        <li class="nav__item"><a href="index.html">Discover</a></li>
-        <li class="nav__item"><a href="#">Favourite</a></li>
+        <li class="nav__item"><a href="shop.php">Shops</a></li>
+        <li class="nav__item"><a href="profile.php">Profile</a></li>
+        <li class="nav__item"><a href="add_shop.php">AddShop</a></li>
+         <li class="nav__item"><a href="creatorAdmin.php">creatorAdmin</a></li>
+        <li class="nav__item">
+          <a href="cart.php">Cart<?php if($cart_count > 0) echo " ($cart_count)"; ?></a>
+        </li>
+    
       </ul>
     </nav>
+
     <!--hero section-->
     <section class="block hero block--dark">
       <div class="container grid grid--1x3">
@@ -70,8 +84,11 @@
     </section>
     <section class="block container block-domain">
       <header class="block__header">
-        <h2>Zero Selling Fees</h2>
+        <h2>Low Selling Fees</h2>
         <p>Sell and Buy on GlamConnect</p>
+        <p style="color: #e1575a; font-weight: 600;">
+          Our 15% commission covers local delivery—no extra delivery costs for your buyers!
+        </p>
       </header>
       <div class="input-group">
         <input
@@ -86,89 +103,100 @@
           Search
         </button>
       </div>
+      
+<div class="mb-3" style="display: flex; justify-content: center; align-items: center; gap: 0.5rem;">
+  <span class="badge badge--secondary">10% Off for the month</span>
+  <span class="badge badge--primary">15% Platform Fee</span>
+<span class="badge badge--secondary">Includes Local Delivery</span>
+<span class="badge badge--primary badge-small">No Listing Fees</span>
+</div>
+
+      <div id="shop-search-results"></div>
       <h2 class="brand--heading">Brands</h2>
       <div class="brand-item__row ">
         <div class="brand-item">
-          <a class="brand-item__content" href="/brand/zara">
+          <a class="brand-item__content" href="index.php">
            <img src="https://lh3.googleusercontent.com/7IHkfk6PFQx5fVyI7aDZKrT8BteYnO6HTjJO7V0te7gB1RzY0uEzBbRwRQSatziT8cIbOemeku1obE9pUcwsSTLQZuAo75_SGfAP=s150" alt="Zara">
           <span class="brand-item__name">Zara</span>
           </a>
       </div>
       <div class="brand-item">
-        <a class="brand-item__content" href="/brand/nike">
+        <a class="brand-item__content" href="index.php">
           <img src="https://lh3.googleusercontent.com/6-BArcpazMKccIyjQ_17o4RD36t39Kbt5YTiaQCgXElyC3lr2tZ9w5_rlbf-MDTAgNwhuZVnDuexIUEKs89kYYIyFqMwBfSIdZbq=s150" alt="Nike">
           <span class="brand-item__name">Nike</span>
         </a>
     </div>
     <div class="brand-item">
-      <a class="brand-item__content" href="/brand/h&m">
+      <a class="brand-item__content" href="index.php">
         <img src="https://images.yaga.co.za/_brands/brand-33b6389571c05b747d3db461dbecbf36.jpg?s=150&amp;f=png&amp;c=inside" alt="H&amp;M">
         <span class="brand-item__name">H&M</span>        
       </a>
   </div>
   <div class="brand-item">
-    <a class="brand-item__content" href="/brand/adidas">
+    <a class="brand-item__content" href="index.php">
       <img src="https://lh3.googleusercontent.com/HIWctvyrv7RWR-ykZyZTNf8q4r0JHlrYojn8T0-rz571eTL0MxywTbtJgqGBbeHZ7bOCqg6snNRQId59WUGKjBvetgO1Hgh90N5F=s150" alt="Adidas">
       <span class="brand-item__name">Adidas</span>
     </a>
 </div>
 <div class="brand-item">
-  <a class="brand-item__content" href="/brand/woolworths">
+  <a class="brand-item__content" href="index.php">
     <img src="https://images.yaga.co.za/_brands/brand-46371c9dd6c722446ee8867008f56650.jpeg?s=150&amp;f=png&amp;c=inside" alt="Woolworths">
     <span class="brand-item__name">Woolworths</span>
   </a>
 </div>
 <div class="brand-item">
-  <a class="brand-item__content" href="/brand/converse">
+  <a class="brand-item__content" href="index.php">
     <img src="https://images.yaga.co.za/_brands/brand-010e48a0006e87804f9b580be7412c88.jpg?s=150&amp;f=png&amp;c=inside" alt="Converse">
     <span class="brand-item__name">Converse</span>
   </a>
 </div>
 <div class="brand-item">
-<a class="brand-item__content" href="/brand/cotton-on">
+<a class="brand-item__content" href="index.php">
   <img src="https://lh3.googleusercontent.com/BemUSOWdxc2Tx6HMJCB9l73npnzCdN3Hbrah3YoWwwVikO8hPkg5S5PQ_zVBn8EPrWtlsDoSTHVLY8rVHkQC63qUtNEs-cZ5xSRJ=s150" alt="Cotton On">
   <span class="brand-item__name">Cotton On</span></a>
 </div>
 <div class="brand-item">
-  <a class="brand-item__content" href="/brand/levi's">
+  <a class="brand-item__content" href="index.php">
     <img src="https://lh3.googleusercontent.com/uaBbniS4v2Rey1xEFxZLmoqxCSFTvlEnhkcRKfm08rJKq35B5N9OYJO76m0t0BLzIDUWAXwJfzhZBaUfYZAQEsuG3ZKvtvzIDtcVWw=s150" alt="Levi's">
   <span class="brand-item__name">Levi's</span></a>
 </div>
 <div class="brand-item">
-  <a class="brand-item__content" href="/">
+  <a class="brand-item__content" href="index.php">
+    <img src="https://images.yaga.co.za/_brands/brand-3f0b1c8d2a4e5f6b7c9d8e7f6a5b4c3d.png?s=150&amp;f=png&amp;c=inside" alt="Superbalist">
+    <span class="brand-item__name">Superbalist</span>
   <img srcset="//coricraft.co.za/cdn/shop/files/logo_125x.webp?v=1744622378, //coricraft.co.za/cdn/shop/files/logo_250x.webp?v=1744622378 2x" src="//coricraft.co.za/cdn/shop/files/logo_125x.webp?v=1744622378" loading="lazy" width="125" height="11" class="header__heading-logo logo__main" alt="Coricraft South Africa">
   <span class="brand-item__name">Coricraft</span></a>
 </div>
 <div class="brand-item__row ">
-<div class="brand-item"><a class="brand-item__content" href="/brand/old-khaki">
+<div class="brand-item"><a class="brand-item__content" href="index.php">
   <img src="https://images.yaga.co.za/_brands/brand-36a25b67448101a412ca761267e301ad.png?s=150&amp;f=png&amp;c=inside" alt="Old Khaki">
   <span class="brand-item__name">Old Khaki</span></a>
 </div>
-<div class="brand-item"><a class="brand-item__content" href="/brand/foschini">
+<div class="brand-item"><a class="brand-item__content" href="index.php">
   <img src="https://lh3.googleusercontent.com/-Be_5ygDdLcZvoc71ZFsEnHo2voZ0LCeBrW1l2QURlim7g2i8zvqggMGs23NeGGRNHtlcF_htNE7h3GyflNDzLRbNhE_qS9w68dj=s150" alt="Foschini">
   <span class="brand-item__name">Foschini</span></a>
 </div>
-<div class="brand-item"><a class="brand-item__content" href="/brand/aldo">
+<div class="brand-item"><a class="brand-item__content" href="index.php">
   <img src="https://lh3.googleusercontent.com/32PlvpZp_9DNSEIweVSSbT-Gu80d-_PKn-dHu-GYJc2IYW5RSJGdZEJRtfSnIplEpDSYDIREhVXY9qmZy9B-No18kQD_d6v2bsU8=s150" alt="Aldo">
   <span class="brand-item__name">Aldo</span></a>
 </div>
-<div class="brand-item"><a class="brand-item__content" href="/brand/forever-new">
+<div class="brand-item"><a class="brand-item__content" href="index.php">
   <img src="https://images.yaga.co.za/_brands/brand-45a01058ac0343258a7a8fdcd8b077ae.jpeg?s=150&amp;f=png&amp;c=inside" alt="Forever New">
   <span class="brand-item__name">ForeverNew</span></a>
 </div>
-<div class="brand-item"><a class="brand-item__content" href="/brand/mr-price">
+<div class="brand-item"><a class="brand-item__content" href="index.php">
   <img src="https://images.yaga.co.za/_brands/brand-bd361757635d50e7593ebe44b0903ba2.png?s=150&amp;f=png&amp;c=inside" alt="Mr Price">
   <span class="brand-item__name">Mr Price</span></a>
 </div>
-<div class="brand-item"><a class="brand-item__content" href="/brand/birkenstock">
+<div class="brand-item"><a class="brand-item__content" href="index.php">
   <img src="https://lh3.googleusercontent.com/9_kpmZYnPWfvjxloxuDJuBXqXFz-fybdA7TdJ5hUIvIZMqt_ws4fvuU6wydnsYMbQVuZ2ISaL4cUYvpQbEUCzBbBPp6OHMmFvZQIaQ=s150" alt="Birkenstock">
   <span class="brand-item__name">Birkenstock</span></a>
 </div>
-<div class="brand-item"><a class="brand-item__content" href="/brand/trenery">
+<div class="brand-item"><a class="brand-item__content" href="index.php">
   <img src="https://images.yaga.co.za/_brands/brand-46daa3ac677c678b6c2b57522f0fa30c.png?s=150&amp;f=png&amp;c=inside" alt="Trenery">
   <span class="brand-item__name">Trenery</span></a>
 </div>
-<div class="brand-item"><a class="brand-item__content" href="/brand/country-road">
+<div class="brand-item"><a class="brand-item__content" href="index.php">
   <img src="https://images.yaga.co.za/_brands/brand-28ca2ecf01d5ebaac1e350f31797768b.png?s=150&amp;f=png&amp;c=inside" alt="Country Road">
   <span class="brand-item__name">Country Road</span></a>
 </div>
@@ -214,7 +242,8 @@
         </svg>
         <p class="hp_payments_shipping-subtext">
           Safe selling & buying<br>
-         <a href="#" class="link-arrow">Learn More</a>
+         <a href="learn-more.php" class="link-arrow">Learn More</a>
+
         </p>
       </div>
     </div>
@@ -275,7 +304,7 @@
         </div>
         <blockquote class="quote">
           <p class="quote__text">
-            “Thanks to GlamConnect, I’ve grown my brand without paying a cent in seller fees.
+            “Thanks to GlamConnect, I’ve grown my brand by paying low commission fees per order.
              I reached thousands of customers and turned my side hustle into a real business.”
           </p>
           <p class="quote__text">
@@ -313,9 +342,9 @@
       </header>
       <div class="collapsible__content">
         <ul class="list">
-          <li><a href="#">Clothing</a></li>
-          <li><a href="#">Makeup</a></li>
-          <li><a href="#">Home Decor</a></li>
+          <li><a href="shop.php">Clothing</a></li>
+          <li><a href="shop.php">Makeup</a></li>
+          <li><a href="shop.php">Home Decor</a></li>
         </ul>
       </div>
     </section>
@@ -383,5 +412,29 @@
 </footer>
 
     <script src="js/main.js"></script>
+    <script>
+document.querySelector('.input-group .input').addEventListener('input', function() {
+    const query = this.value;
+    if (query.length < 1) {
+        document.getElementById('shop-search-results').innerHTML = '';
+        return;
+    }
+    fetch('searchShops.php?q=' + encodeURIComponent(query))
+        .then(res => res.json())
+        .then(data => {
+            let html = '';
+            if (data.length > 0) {
+                html = '<ul class="search-results">';
+                data.forEach(shop => {
+                    html += `<li><a href="shop.php?shop=${encodeURIComponent(shop)}">${shop}</a></li>`;
+                });
+                html += '</ul>';
+            } else {
+                html = '<p>No shops found.</p>';
+            }
+            document.getElementById('shop-search-results').innerHTML = html;
+        });
+});
+</script>
   </body>
 </html>
