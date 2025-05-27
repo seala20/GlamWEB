@@ -133,6 +133,45 @@ a {
   padding: 0.5rem 1.5rem;
 }
 
+.badges-row {
+  display: flex;
+  justify-content: flex-start; /* align badges to the left */
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.5rem; /* center the row itself */
+  flex-wrap: wrap;
+  max-width: 670px; /* match input-group width */
+}
+.badges-wrapper {
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 670px;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 400px; /* key part to align with button */
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.block-domain .badges-row {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 900px) {
+  .badges-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 95vw;
+  }
+  .badges-row .badge {
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+  }
+}
 @media screen and (min-width: 1024px) {
   .badge {
     font-size: 1.5rem;
@@ -295,6 +334,12 @@ a {
   font-size: 2rem;
   outline: 0;
   padding: 1.5rem 3.5rem;
+  display: flex;
+  max-width: 670px;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 40px;
+  overflow: hidden;
 }
 
 ::placeholder {

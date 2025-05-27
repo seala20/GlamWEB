@@ -104,11 +104,15 @@
         </button>
       </div>
       
-<div class="mb-3" style="display: flex; justify-content: center; align-items: center; gap: 0.5rem;">
-  <span class="badge badge--secondary">10% Off for the month</span>
-  <span class="badge badge--primary">15% Platform Fee</span>
-<span class="badge badge--secondary">Includes Local Delivery</span>
-<span class="badge badge--primary badge-small">No Listing Fees</span>
+<div class="badges-outer">
+  <div class="badges-wrapper">
+    <div class="mb-3">
+      <span class="badge badge--secondary">10% Off for the month</span>
+      <span class="badge badge--primary">15% Platform Fee</span>
+      <span class="badge badge--secondary">Includes Local Delivery</span>
+      <span class="badge badge--primary badge-small">No Listing Fees</span>
+    </div>
+  </div>
 </div>
 
       <div id="shop-search-results"></div>
@@ -160,10 +164,8 @@
     <img src="https://lh3.googleusercontent.com/uaBbniS4v2Rey1xEFxZLmoqxCSFTvlEnhkcRKfm08rJKq35B5N9OYJO76m0t0BLzIDUWAXwJfzhZBaUfYZAQEsuG3ZKvtvzIDtcVWw=s150" alt="Levi's">
   <span class="brand-item__name">Levi's</span></a>
 </div>
-<div class="brand-item">
-  <a class="brand-item__content" href="index.php">
-    <img src="https://images.yaga.co.za/_brands/brand-3f0b1c8d2a4e5f6b7c9d8e7f6a5b4c3d.png?s=150&amp;f=png&amp;c=inside" alt="Superbalist">
-    <span class="brand-item__name">Superbalist</span>
+<d class="brand-item">
+<a class="brand-item__content" href="index.php">
   <img srcset="//coricraft.co.za/cdn/shop/files/logo_125x.webp?v=1744622378, //coricraft.co.za/cdn/shop/files/logo_250x.webp?v=1744622378 2x" src="//coricraft.co.za/cdn/shop/files/logo_125x.webp?v=1744622378" loading="lazy" width="125" height="11" class="header__heading-logo logo__main" alt="Coricraft South Africa">
   <span class="brand-item__name">Coricraft</span></a>
 </div>
